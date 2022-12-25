@@ -2,6 +2,11 @@
 using Microsoft.EntityFrameworkCore.Migrations;
 using System;
 
+//trhis file was automatically created when we chose the authentication type while
+//creating project. use "update-database" command in package manager console to create all the 
+//listed tables automatically in the db mentioned in appsettings.json file connectionstring
+
+
 namespace LeaveManagement.Web.Data.Migrations
 {
     public partial class CreateIdentitySchema : Migration

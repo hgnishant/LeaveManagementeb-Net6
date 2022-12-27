@@ -1,5 +1,7 @@
 using LeaveManagement.Web.Configurations;
+using LeaveManagement.Web.Contracts;
 using LeaveManagement.Web.Data;
+using LeaveManagement.Web.Repositories;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -15,6 +17,10 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 //we pass here Employee class and remove IdentityUser from below line 
 builder.Services.AddDefaultIdentity<Employee>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();
+
+
+builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(IGenericRepository<>)); //register your generic repo
+builder.Services.AddScoped<ILeaveTypeRepository, LeaveTypeRepository>(); //register your custom repo
 
 builder.Services.AddAutoMapper(typeof(MapperConfig)); //register autoMapper
 

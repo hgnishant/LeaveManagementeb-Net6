@@ -4,11 +4,11 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h3>Leave Details</h3>
 
-<p>
-    <a asp-action="Create">Create New</a>
-</p>
+<hr />
+
+
 <table class="table">
     <thead>
         <tr>
@@ -18,36 +18,79 @@
             <th>
                 @Html.DisplayNameFor(model => model.DefaultDays)
             </th>
-           @* <th>
-                @Html.DisplayNameFor(model => model.DateCreated)
+            @* <th>
+            @Html.DisplayNameFor(model => model.DateCreated)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.DateModified)
+            @Html.DisplayNameFor(model => model.DateModified)
             </th>*@
             <th></th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.DefaultDays)
+                </td>
+                @* <td>
+            @Html.DisplayFor(modelItem => item.DateCreated)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.DefaultDays)
-            </td>
-           @* <td>
-                @Html.DisplayFor(modelItem => item.DateCreated)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DateModified)
+            @Html.DisplayFor(modelItem => item.DateModified)
             </td>*@
-            <td>
-                <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
-                <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
-                <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
-            </td>
-        </tr>
-}
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.ID" class="btn btn-warning"><i class="fa-regular fa-pen-to-square"></i></a> 
+                    <a asp-action="Details" asp-route-id="@item.ID" class="btn btn-info"><i class="fa-solid fa-circle-info"></i></a> 
+                   @* <a asp-action="Delete" asp-route-id="@item.ID" class="btn btn-danger">Delete</a>*@
+                    <button data-nishant="@item.ID" type="button" class="btn btn-danger btnDelete"><i class="fa-solid fa-trash"></i></button>
+                </td>
+            </tr>
+        }
+
+
     </tbody>
 </table>
+
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Create New Leave</a>
+</p>
+
+<form asp-action="Delete" id="deleteForm">
+    <input type="hidden" id="LeaveTypeId" name="Id" />
+</form>
+
+@section Scripts {
+    <script>
+        $(function () {
+            $('.table').DataTable();
+            $('.btnDelete').click(function (e) {
+                swal({
+                    title: "Are you sure?",
+                    text: "Once deleted, you will not be able to recover this record!",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                    .then((willDelete) => {
+                        if (willDelete) {
+                            var btn = $(this);
+                            var id = btn.data("nishant");
+                            $('#LeaveTypeId').val(id);
+                            $('#deleteForm').submit();
+                            swal("Your record is deleted.", {
+                                icon: "success",
+                            });
+                        } else {
+                            swal("Your record is safe!");
+                        }
+                    });
+            });
+        });
+    </script>
+ }

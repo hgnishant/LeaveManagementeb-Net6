@@ -1,4 +1,4 @@
-﻿@model LeaveManagement.Web.Data.LeaveType
+﻿@model LeaveTypeVM
 
 @{
     ViewData["Title"] = "Edit";
@@ -23,7 +23,7 @@
                 <span asp-validation-for="DefaultDays" class="text-danger"></span>
             </div>
             <input type="hidden" asp-for="ID" />
-            <div class="form-group">
+           @* <div class="form-group">
                 <label asp-for="DateCreated" class="control-label"></label>
                 <input asp-for="DateCreated" class="form-control" />
                 <span asp-validation-for="DateCreated" class="text-danger"></span>
@@ -32,15 +32,21 @@
                 <label asp-for="DateModified" class="control-label"></label>
                 <input asp-for="DateModified" class="form-control" />
                 <span asp-validation-for="DateModified" class="text-danger"></span>
-            </div>
+            </div>*@
+            <br/>
             <div class="form-group">
-                <input type="submit" value="Save" class="btn btn-primary" />
+                <input type="submit" value="Save" class="btn btn-warning" /> |
+                <a asp-action="Index" class="btn btn-dark">Back to List</a>
             </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
 
+
+       @section  customByNishant
+       {
+       <div>
+        <p>just a test to show this custom section by using 'await RenderSectionAsync("customByNishant", required: false)'</p>
+       </div>
+       }

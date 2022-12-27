@@ -1,13 +1,13 @@
-﻿@model LeaveManagement.Web.Data.LeaveType
+﻿@model LeaveTypeVM
 
 @{
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<h3>Details of @Model.Name</h3>
 
 <div>
-    <h4>LeaveType</h4>
+    
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -22,7 +22,7 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.DefaultDays)
         </dd>
-        <dt class = "col-sm-2">
+       @* <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.DateCreated)
         </dt>
         <dd class = "col-sm-10">
@@ -33,10 +33,10 @@
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.DateModified)
-        </dd>
+        </dd>*@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.ID">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Edit" asp-route-id="@Model?.ID" class="btn btn-warning">Edit</a> |
+    <a asp-action="Index" class="btn btn-dark">Back to List</a>
 </div>

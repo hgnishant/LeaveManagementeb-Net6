@@ -3,12 +3,12 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+<h3>Create New Leave</h3>
 
-<h4>LeaveType</h4>
+
 <hr />
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-8">
         @*@Html.AntiForgeryToken()   --this line is required only in the older versions but not in latest versions*@
         <form asp-action="Create">  @*no method is mentioned, so form automaticlaly goes as "post" and antiforgerytoken is generated automatocally. no html helper required in latest versons*@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -32,14 +32,16 @@
                 <input asp-for="DateModified" class="form-control" />
                 <span asp-validation-for="DateModified" class="text-danger"></span>
             </div>*@
+            <hr/>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Create" class="btn btn-success" />
+                <a asp-action="Index" class="btn btn-dark">Back to List</a>
             </div>
+
+         
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
+
 
